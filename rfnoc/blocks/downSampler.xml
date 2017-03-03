@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--Default XML file-->
+<nocblock>
+  <name>downSampler</name>
+  <blockname>downSampler</blockname>
+  <ids>
+    <id revision="0">ED6E9C5B02328DA5</id>
+  </ids>
+  <!-- Registers -->
+  <registers>
+
+    <setreg>
+      <name>SR_M</name>
+      <address>193</address>
+    </setreg>   
+    <setreg>
+      <name>SR_N</name>
+      <address>194</address>
+    </setreg>    
+  </registers>   
+
+  <!-- Args -->
+  <args>
+
+    <arg>
+      <name>sr_m</name>
+      <type>int</type>
+      <value>3</value>
+      <action>SR_WRITE("SR_M", $sr_m)</action>
+    </arg>
+    <arg>
+      <name>sr_n</name>
+      <type>int</type>
+      <value>2</value>
+      <action>SR_WRITE("SR_N", $sr_n)</action>
+    </arg>    
+  </args>
+  <!--One input, one output. If this is used, better have all the info the C++ file.-->
+  <ports>
+    <sink>
+      <name>in</name>
+    </sink>
+    <source>
+      <name>out</name>
+    </source>
+  </ports>
+</nocblock>

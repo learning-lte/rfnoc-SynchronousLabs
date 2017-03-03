@@ -1,0 +1,2 @@
+add_subdirectory(noc_block_downSampler_tb)
+add_subdirectory(noc_block_upSampler_tb)

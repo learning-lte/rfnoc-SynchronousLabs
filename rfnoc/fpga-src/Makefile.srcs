@@ -1,0 +1,10 @@
+$(addprefix /home/jason/Documents/nocblocks/rfnoc-SynchronousLabs/rfnoc/fpga-src/, \
+noc_block_upSampler.v \
+noc_block_downSampler.v \
+axi_wrapper_mod.v \
+fract_decimator.vhd \
+fract_dec_filter.vhd \
+fract_interpolator.vhd \
+fract_interp_filter.vhd \
+din_fifo.vhd \
+) \

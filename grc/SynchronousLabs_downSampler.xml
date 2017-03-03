@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<block>
+  <name>RFNoC: downSampler</name>
+  <key>SynchronousLabs_downSampler</key>
+  <category>SynchronousLabs</category>
+  <import>import SynchronousLabs</import>
+  <import>from math import floor</import>
+  <import>import ctypes</import>
+  <make>SynchronousLabs.downSampler(
+          self.device3,
+          uhd.stream_args( # TX Stream Args
+                cpu_format="fc32",
+                otw_format="sc16",
+                args="",
+          ),
+          uhd.stream_args( # RX Stream Args
+                cpu_format="fc32",
+                otw_format="sc16",
+                args="",
+          ),
+          $block_index,
+          $device_index
+  )
+<!--
+self.$(id).set_arg("delta", $delta)
+-->
+self.$(id).set_arg("sr_n", $sr_n)
+self.$(id).set_arg("sr_m", $sr_m)
+  </make> 
+<!--
+  <callback>set_arg("delta", $delta)</callback> 
+-->
+  <callback>set_arg("sr_n", $sr_n)</callback>
+  <callback>set_arg("sr_m", $sr_m)</callback>  
+ 
+  
+<!--
+  <param>
+    <name>Delta </name>
+    <key>delta</key>
+    <value>10</value>
+    <type>int</type>
+  </param> 
+-->
+  <param>
+    <name>SR_M </name>
+    <key>sr_m</key>
+    <value>2</value>
+    <type>int</type>
+  </param> 
+  <param>
+    <name>SR_N </name>
+    <key>sr_n</key>
+    <value>3</value>
+    <type>int</type>
+  </param> 
+  
+  <param>
+    <name>Device Select</name>
+    <key>device_index</key>
+    <value>-1</value>
+    <type>int</type>
+    <hide>#if int($device_index()) &lt; 0 then 'part' else 'none'#</hide>
+    <tab>RFNoC Config</tab>
+  </param>
+  
+  <param>
+    <name>DOWNN_SAMPLER Select</name>
+    <key>block_index</key>
+    <value>-1</value>
+    <type>int</type>
+    <hide>#if int($block_index()) &lt; 0 then 'part' else 'none'#</hide>
+    <tab>RFNoC Config</tab>
+  </param>
+  
+  
+  <sink>
+    <name>in</name>
+    <type>complex</type>
+    <domain>rfnoc</domain>
+  </sink>
+  
+  <source>
+    <name>out</name>
+    <type>complex</type>
+    <domain>rfnoc</domain>
+  </source>
+</block>
