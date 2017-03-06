@@ -22,6 +22,7 @@ Either load the pre-built FPGA images in the ./binaries/ directory or build the 
 The currently supported IP Names are:
 
   upSampler
+  
   downSampler
   
 Run the example GNURadio-Companion applications in the ./examples/ directory  
