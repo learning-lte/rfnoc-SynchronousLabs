@@ -1,6 +1,6 @@
 # gr-SynchronousLabs
 
-This project implements RFNoc out-of-tree Module.
+This project implements an RFNoc out-of-tree Module.
 
 The project currently contains the following IP:
 
@@ -17,6 +17,10 @@ To build the software project:
   
 Either load the pre-built FPGA images in the ./binaries/ directory or build the FPGA project via:
 
-  **uhd_image_builder.py upSampler -I /home/jason/Documents/nocblocks/rfnoc-SynchronousLabs/rfnoc/fpga-src/  -d x300 -t       X300_RFNOC_HG -m 5 --fill-with-fifos**
+  **uhd_image_builder.py _IP_Name_ -I ./rfnoc-SynchronousLabs/rfnoc/fpga-src/  -d x300 -t       X300_RFNOC_HG -m 5 --fill-with-fifos**
+  
+The currently supported IP Names are:
+  upSampler
+  downSampler
   
 Run the example GNURadio-Companion applications in the ./examples/ directory  
