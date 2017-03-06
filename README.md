@@ -20,6 +20,7 @@ Either load the pre-built FPGA images in the ./binaries/ directory or build the 
   **uhd_image_builder.py _IP_Name_ -I ./rfnoc-SynchronousLabs/rfnoc/fpga-src/  -d x300 -t       X300_RFNOC_HG -m 5 --fill-with-fifos**
   
 The currently supported IP Names are:
+
   upSampler
   downSampler
   
