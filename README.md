@@ -15,7 +15,7 @@ To build the software project:
   **make**
   **sudo make**
   
-Either load the pre-built FPGA images in the ./binaries/ directory or build the projec via:
+Either load the pre-built FPGA images in the ./binaries/ directory or build the FPGA project via:
 
   **uhd_image_builder.py upSampler -I /home/jason/Documents/nocblocks/rfnoc-SynchronousLabs/rfnoc/fpga-src/  -d x300 -t       X300_RFNOC_HG -m 5 --fill-with-fifos**
   
