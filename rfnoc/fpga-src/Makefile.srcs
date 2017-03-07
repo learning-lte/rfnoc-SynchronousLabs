@@ -1,4 +1,4 @@
-$(addprefix /home/jason/Documents/nocblocks/rfnoc-SynchronousLabs/rfnoc/fpga-src/, \
+$( \
 noc_block_upSampler.v \
 noc_block_downSampler.v \
 axi_wrapper_mod.v \
