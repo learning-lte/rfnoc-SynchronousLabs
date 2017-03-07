@@ -20,7 +20,13 @@ To build the software project:
   **sudo make install**
   
   
-Either load the pre-built FPGA images in the ./binaries/ directory or build the FPGA project via:
+  
+  
+Either load the pre-built FPGA images in the ./binaries/ directory or build the FPGA project.
+
+If your building the FPGA you'll need to modify the ./rfnoc-SynchronousLabs/rfnoc/fpga-src/Makefile.srcs file so that {USER_PREFIX} filed points to the OOT project.  
+
+The build can be started using the following command:
 
   **uhd_image_builder.py _IP_Name_ -I ./rfnoc-SynchronousLabs/rfnoc/fpga-src/ -d x300 -t X300_RFNOC_HG -m 5 --fill-with-fifos**
   
