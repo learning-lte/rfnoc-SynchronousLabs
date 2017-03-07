@@ -62,22 +62,6 @@ end fract_interpolator;
 
 architecture Behavioral of fract_interpolator is
 
-component ila_0
-  port (
-	clk     : in STD_LOGIC;
-	probe0  : in STD_LOGIC_VECTOR(127 downto 0)
-  );
-end component;
-
---~ COMPONENT dds
-  --~ PORT (
-    --~ aclk : IN STD_LOGIC;
-    --~ aclken : IN STD_LOGIC;
-    --~ m_axis_data_tvalid : OUT STD_LOGIC;
-    --~ m_axis_data_tdata : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
-  --~ );
---~ END COMPONENT;
-
 
 constant DELTA_REG            : integer := 192;
 signal s_delta                : std_logic_vector(31 downto 0);
@@ -121,34 +105,6 @@ signal s_dds_dout             : std_logic_vector(31 downto 0);
 signal s_dds_vld              : std_logic;
 signal s_clear                : std_logic;
 
-
-attribute keep : string;  
-attribute keep of s_fifo_dout    : signal is "true";  
-attribute keep of s_delta_ext    : signal is "true"; 
-attribute keep of s_dout         : signal is "true";  
-attribute keep of s_data_cnt_0   : signal is "true"; 
-attribute keep of s_data_cnt_1   : signal is "true"; 
-attribute keep of s_en           : signal is "true"; 
-attribute keep of s_dout_vld     : signal is "true";  
-attribute keep of s_active       : signal is "true"; 
-attribute keep of s_rdy          : signal is "true"; 
-attribute keep of s_mfifo_valid  : signal is "true"; 
-attribute keep of s_sync         : signal is "true";
-attribute keep of s_wr_en_0      : signal is "true";
-attribute keep of s_rd_en_0      : signal is "true";
-attribute keep of s_wr_en_1      : signal is "true";
-attribute keep of s_rd_en_1      : signal is "true";
-attribute keep of s_i_rdy        : signal is "true";
-attribute keep of s_din          : signal is "true";
-attribute keep of s_din_vld      : signal is "true";
-attribute keep of s_full_0       : signal is "true";
-attribute keep of s_empty_0      : signal is "true";
-attribute keep of s_full_1       : signal is "true";
-attribute keep of s_empty_1      : signal is "true";
-attribute keep of s_clear        : signal is "true";
-attribute keep of s_delta        : signal is "true";
-attribute keep of s_filter_vld   : signal is "true";
-attribute keep of s_filter_out   : signal is "true";
 
 begin
 
@@ -238,33 +194,5 @@ dout_fifo_inst: entity work.din_fifo
     prog_empty => s_empty_1
   );
 
-
---~ ila_0_inst: ila_0
---~ port map( 
-	--~ clk     => i_clk,
-	--~ probe0  => s_ila_probe
- --~ );
- 
-
-s_ila_probe(47 downto 0)    <= s_delta_ext;
-s_ila_probe(63 downto 48)   <= s_complex_din(15 downto 0);
-s_ila_probe(64)             <= s_en;
-s_ila_probe(80 downto 65)   <= s_filter_out(15 downto 0);
-s_ila_probe(81)             <= s_filter_vld;
-s_ila_probe(82)             <= s_sync;
-s_ila_probe(92 downto 83)   <= s_data_cnt_0;
-s_ila_probe(95 downto 93)   <= (others=>'0');
-s_ila_probe(96)             <= s_i_rdy;
-s_ila_probe(97)             <= s_din_vld;
-s_ila_probe(98)             <= s_empty_0;
-s_ila_probe(99)             <= s_full_0;
-s_ila_probe(100)            <= s_wr_en_0;
-s_ila_probe(101)            <= s_rd_en_0;
-s_ila_probe(102)            <= s_empty_1;
-s_ila_probe(103)            <= s_full_1;
-s_ila_probe(104)            <= s_wr_en_1;
-s_ila_probe(105)            <= s_rd_en_1;
-s_ila_probe(121 downto 106) <= s_din(15 downto 0);
-s_ila_probe(127 downto 122) <= (others=>'0');
 
 end Behavioral;
