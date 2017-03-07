@@ -66,12 +66,6 @@ Port (
 end component fract_dec_filter;
 
 
-component ila_0
-Port (
-	clk    : in STD_LOGIC;
-	probe0 : in STD_LOGIC_VECTOR(127 downto 0)
-);
-end component;
 
 constant DELTA_REG             : integer := 192;
 signal s_delta                 : std_logic_vector(31 downto 0);
@@ -160,22 +154,6 @@ Port Map(
     i_din_vld     => i_din_vld,
     o_dout        => s_dout,
     o_dout_vld    => s_dout_vld 
-);
-
-
-s_ila_probe(47 downto 0)    <= s_delta_ext;
-s_ila_probe(79 downto 48)   <= s_delta;
-s_ila_probe(80)             <= s_rdy;
-s_ila_probe(96 downto 81)   <= s_din_i;
-s_ila_probe(112 downto 97)  <= s_dout(15 downto 0);
-s_ila_probe(113)            <= s_dout_vld;
-s_ila_probe(114)            <= s_din_vld;
-s_ila_probe(127 downto 115) <= (others=>'0');
-
-ila_0_inst: ila_0
-Port Map (
-	clk    => i_clk,
-	probe0 => s_ila_probe
 );
 
 
