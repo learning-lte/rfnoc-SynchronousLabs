@@ -10,10 +10,15 @@ The project currently contains the following IP:
 To build the software project:
 
   **mkdir build**
+  
   **cd build**
+  
   **cmake ../**
+  
   **make**
+  
   **sudo make**
+  
   
 Either load the pre-built FPGA images in the ./binaries/ directory or build the FPGA project via:
 
