@@ -94,15 +94,6 @@ signal s_din_vld               : std_logic;
 signal s_rdy                   : std_logic;
 
 
-attribute keep : string;   
-attribute keep of s_delta_ext  : signal is "true";  
-attribute keep of s_delta      : signal is "true"; 
-attribute keep of s_dout_vld   : signal is "true";
-attribute keep of s_dout       : signal is "true";
-attribute keep of s_rdy        : signal is "true";
-attribute keep of s_din_i      : signal is "true";
-attribute keep of s_din_vld    : signal is "true";
-
 
 begin
 
