@@ -52,23 +52,23 @@ module noc_block_upSampler #(
 
 	wire        clear_tx_seqnum;
 	
-	(* KEEP = "TRUE" *) wire [31:0]  m_axis_data_tdata;
-	(* KEEP = "TRUE" *) wire         m_axis_data_tlast;
-	(* KEEP = "TRUE" *) wire         m_axis_data_tvalid;
-	(* KEEP = "TRUE" *) wire         m_axis_data_tready;
-	(* KEEP = "TRUE" *) wire [127:0] m_axis_data_tuser;
+	wire [31:0]  m_axis_data_tdata;
+	wire         m_axis_data_tlast;
+	wire         m_axis_data_tvalid;
+	wire         m_axis_data_tready;
+	wire [127:0] m_axis_data_tuser;
 
-	(* KEEP = "TRUE" *) wire [31:0]  s_axis_data_tdata;
-	(* KEEP = "TRUE" *) wire         s_axis_data_tlast;
-	(* KEEP = "TRUE" *) wire         s_axis_data_tvalid;
-	(* KEEP = "TRUE" *) wire         s_axis_data_tready;
-	(* KEEP = "TRUE" *) wire [127:0] s_axis_data_tuser;
+	wire [31:0]  s_axis_data_tdata;
+	wire         s_axis_data_tlast;
+	wire         s_axis_data_tvalid;
+	wire         s_axis_data_tready;
+	wire [127:0] s_axis_data_tuser;
 	
-	(* KEEP = "TRUE" *) wire [31:0]  m_axis_inter_tdata;
-	(* KEEP = "TRUE" *) wire         m_axis_inter_tlast;
-	(* KEEP = "TRUE" *) wire         m_axis_inter_tvalid;
-	(* KEEP = "TRUE" *) wire         m_axis_inter_tready;
-	(* KEEP = "TRUE" *) wire [127:0] m_axis_inter_tuser;
+	wire [31:0]  m_axis_inter_tdata;
+	wire         m_axis_inter_tlast;
+	wire         m_axis_inter_tvalid;
+	wire         m_axis_inter_tready;
+	wire [127:0] m_axis_inter_tuser;
 
 	(* KEEP = "TRUE" *) wire [31:0]  s_axis_inter_tdata;
 	(* KEEP = "TRUE" *) wire         s_axis_inter_tlast;
@@ -106,7 +106,7 @@ module noc_block_upSampler #(
 
 
 	axi_wrapper_mod #(
-		.MTU(10))
+		.MTU(11))
 	axi_wrapper_mod (
 		.clk(ce_clk), .reset(ce_rst),
 		.clear_tx_seqnum(clear_tx_seqnum),
@@ -133,34 +133,7 @@ module noc_block_upSampler #(
 		.m_axis_pkt_len_tready());
     
  
-	//~ wire clear_user;
-	//~ axi_rate_change #(
-	   //~ .SR_N_ADDR(193),
-	   //~ .SR_M_ADDR(194),
-	   //~ .SR_CONFIG_ADDR(195)
-	//~ )(
-	  //~ .clk(ce_clk), 
-	  //~ .reset(ce_rst), 
-	  //~ .clear(clear_tx_seqnum),
-	  //~ .clear_user(clear_user),  // Strobed after end of burst. Throttles input. Useful for resetting user code between bursts.
-	  //~ .src_sid(src_sid), .dst_sid(next_dst_sid),
-	  //~ .set_stb(set_stb), .set_addr(set_addr), .set_data(set_data),
-	  //~ .i_tdata(m_axis_data_tdata), .i_tlast(m_axis_data_tlast), .i_tvalid(m_axis_data_tvalid), .i_tready(m_axis_data_tready), .i_tuser(m_axis_data_tuser),
-	  //~ .o_tdata(s_axis_data_tdata), .o_tlast(s_axis_data_tlast), .o_tvalid(s_axis_data_tvalid), .o_tready(s_axis_data_tready), .o_tuser(s_axis_data_tuser),
-	  //~ .m_axis_data_tdata(m_axis_inter_tdata),
-	  //~ .m_axis_data_tlast(m_axis_inter_tlast),
-	  //~ .m_axis_data_tvalid(m_axis_inter_tvalid),
-	  //~ .m_axis_data_tready(m_axis_inter_tready),
-	  //~ .s_axis_data_tdata(s_axis_inter_tdata),
-	  //~ .s_axis_data_tlast(1'b0),
-	  //~ .s_axis_data_tvalid(s_axis_inter_tvalid),
-	  //~ .s_axis_data_tready(s_axis_inter_tready),
-	  //~ .warning_header_fifo_full(), 
-	  //~ .warning_long_throttle(),     
-	  //~ .error_extra_outputs(),       
-	  //~ .error_drop_pkt_lockup()      
-	//~ ); 
- 
+	
   
 	fract_interpolator fract_interpolator_inst
 	( 
@@ -178,27 +151,5 @@ module noc_block_upSampler #(
 		.o_tdata(s_axis_data_tdata),
 		.o_tvalid(s_axis_data_tvalid));
 
-
-
-	
-
-
- //~ wire  [127:0] ila_probe_1; 
- //~ ila_0 ila_1_inst
-//~ ( 
-	//~ .clk(ce_clk),
-	//~ .probe0(ila_probe_1)
- //~ );
-//~ 
- //~ 
- //~ assign ila_probe_1[0]        = m_axis_data_tvalid;
- //~ assign ila_probe_1[1]        = m_axis_data_tready;
- //~ assign ila_probe_1[2]        = s_axis_data_tvalid;
- //~ assign ila_probe_1[3]        = s_axis_data_tready; 
- //~ assign ila_probe_1[4]        = m_axis_inter_tvalid;
- //~ assign ila_probe_1[5]        = m_axis_inter_tready;
- //~ assign ila_probe_1[6]        = s_axis_inter_tvalid;
- //~ assign ila_probe_1[7]        = s_axis_inter_tready;
- //~ assign ila_probe_1[127:8]     = 'd0;
      
 endmodule
